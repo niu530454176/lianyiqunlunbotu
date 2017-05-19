@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet"
+		  href="http://misc.360buyimg.com/??jdf/1.0.0/unit/ui-base/1.0.0/ui-base.css,jdf/1.0.0/unit/shortcut/2.0.0/shortcut.css,jdf/1.0.0/unit/global-header/1.0.0/global-header.css,jdf/1.0.0/unit/myjd/2.0.0/myjd.css,jdf/1.0.0/unit/nav/2.0.0/nav.css,jdf/1.0.0/unit/shoppingcart/2.0.0/shoppingcart.css,jdf/1.0.0/unit/global-footer/1.0.0/global-footer.css,jdf/1.0.0/unit/service/1.0.0/service.css">
+	<link rel="stylesheet"
+		  href="http://static.360buyimg.com/item/default/1.0.32/components/??/common/common.css,/main/main.css,/address/address.css,/prom/prom.css,/colorsize/colorsize.css,/buytype/buytype.css,/track/track.css,/suits/suits.css,/baitiao/baitiao.css,/o2o/o2o.css,/summary/summary.css,/buybtn/buybtn.css,/crumb/crumb.css,/fittings/fittings.css,/detail/detail.css,/contact/contact.css,/popbox/popbox.css,/preview/preview.css,/info/info.css,/imcenter/imcenter.css,/jdservice/jdservice.css,/popupCar/popupCar.css">
+	<style type="text/css">
+		#itemover {
+			border: 1px solid #EEE;
+			width: 590px;
+		}
+		#itemover .mt {
+			margin: 10px;
+			color: #999
+		}
+		#itemover .mt h3 {
+			font-size: 12px;
+			font-weight: 400
+		}
+		#itemover .mt .page-num .curr {
+			color: #E3393C
+		}
+		#itemover .mc {
+			height: 535px;
+			padding: 10px 46px;
+			position: relative
+		}
+		#itemover .mc .lists {
+			width: 392px;
+			height: 508px;
+			margin: 0 auto;
+			overflow: hidden
+		}
+		#itemover .mc .lists .list {
+			width: 10000px;
+			overflow: hidden
+		}
+		#itemover .mc .lists .list .plist {
+			width: 392px;
+			_width: 392px;
+			float: left;
+			margin-bottom: 0
+		}
+		#itemover .mc .lists .list li {
+			float: left;
+			width: 185px;
+			margin: 10px 5px 30px
+		}
+		#itemover .mc .lists .list li .p-img {
+			width: 150px;
+			height: 150px;
+			margin: 0 auto
+		}
+		#itemover .mc .lists .list li .p-price {
+			font-size: 14px
+		}
+		#itemover .arrow, #itemover .ui-switchable-next, #itemover .ui-switchable-prev {
+			position: absolute;
+			top: 242px;
+			width: 22px;
+			height: 32px;
+			cursor: pointer
+		}
+		#itemover .arrow i, #itemover .ui-switchable-next i, #itemover .ui-switchable-prev i {
+			display: inline-block;
+			*display: inline;
+			*zoom: 1; vertical-align: middle;
+			margin-right: 5px
+		}
+		#itemover .ui-switchable-next {
+			right: 12px
+		}
+		#itemover .ui-switchable-next .sprite-arrow-next {
+			width: 22px;
+			height: 32px;
+			background-image: url(//static.360buyimg.com/item/default/1.0.32/components/itemover/i/__sprite.png);
+			background-position: 0 0
+		}
+		#itemover .ui-switchable-prev {
+			left: 12px
+		}
+		#itemover .ui-switchable-prev .sprite-arrow-prev {
+			width: 22px;
+			height: 32px;
+			background-image: url(//static.360buyimg.com/item/default/1.0.32/components/itemover/i/__sprite.png);
+			background-position: -22px 0
+		}
+		.itemover-tip {
+			color: #999;
+			margin-bottom: 5px
+		}
+		.root61 #itemover .mc .lists, .root61 #itemover .mc .lists .list .plist {
+			width: 592px
+		}
+		.clothing #itemover .mc .lists, .clothing #itemover .mc .lists .list .plist {
+			width: 392px;
+			_width: 412px
+		}
+	</style>
+</head>
+<body>
+<div id="itemover" class="itemover"></div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/template.js"></script>
+<script type="text/javascript">
+
+	function ItemOver(opts) {
+		this.init(opts);
+	}
+
+	ItemOver.prototype = {
+		template_itemover: '\
+        <div class="mt">\
+            <h3 class="fl">相似商品推荐</h3>\
+            <div class="page-num fr">\
+                <span class="curr J-curr">1</span>/<span class="total J-total">${data.length}</span>\
+            </div>\
+        </div>\
+        <div class="mc">\
+            <a href="javascript:;" class="ui-switchable-prev J-ui-switchable-prev disabled"><i class="sprite-arrow-prev"></i></a>\
+            <div class="lists">\
+                <div class="list ui-switchable-panel-main J-ui-switchable-panel-main">\
+                    {for item in data}\
+                    {if item_index%4==0}\
+                    <ul class="plist J-plist ui-switchable-panel">\
+					{/if}\
+                        <li>\
+                            <div class="p-img">\
+                                <a target="_blank" href="//item.jd.com/${item.sku}.html">\
+                                    <img height="150" width="150" alt="${item.t}" src="http://img10.360buyimg.com/n1/s150x150_${item.img}">\
+                                </a>\
+                            </div>\
+                            <div class="p-name">\
+                                <a target="_blank" href="//item.jd.com/${item.sku}.html"" title="${item.t}">${item.t}</a>\
+                            </div>\
+                            <div class="p-price"><strong class="J-p-${item.sku}">￥${item.jp}</strong></div>\
+                        </li>\
+                    {if item_index%4==3}\
+					</ul>\
+					{/if}\
+                    {/for}\
+                </div>\
+            </div>\
+            <a href="javascript:;" class="ui-switchable-next J-ui-switchable-next disabled"><i class="sprite-arrow-next"></i></a>\
+        </div>',
+		init: function (opts) {
+			var _this = this;
+
+			_this.$target = opts.$target;
+			_this.index = 0;
+
+			_this.get();
+			_this.bindEvent();
+		},
+		get: function () {
+			var _this = this;
+			$.ajax({
+				url: 'http://diviner.jd.com/diviner',
+				data: {
+					lid: 1,
+					lim: 12,
+					p: 902011,
+					sku: 1754853106,
+					c1: 1315,
+					c2: 1343,
+					c3: 9719
+				},
+				scriptCharset: 'gbk',
+				cache: true,
+				dataType: 'jsonp',
+				jsonpCallback: 'itemover',
+				success: function (result) {
+					_this.set(result);
+				}
+			})
+		},
+		set: function (result) {
+			var _this = this;
+			var html = _this.template_itemover.process(result);
+			_this.$target.html(html);
+
+			var pListLen = _this.$target.find('.J-plist').length;//根据ul个数设置总页数
+			_this.$target.find('.J-total').html(pListLen);
+		},
+		bindEvent: function () {
+			var _this = this;
+			_this.$target.delegate('.J-ui-switchable-prev', 'click', function () {
+				_this.change('prev');
+			});
+
+			_this.$target.delegate('.J-ui-switchable-next', 'click', function () {
+				_this.change('next');
+			});
+		},
+		change: function (direction) {
+			var _this = this;
+			var $panelMain = _this.$target.find('.J-ui-switchable-panel-main');
+			var $pList = $panelMain.find('.J-plist');
+			if (direction == 'prev') {
+				_this.index--;
+			} else {
+				_this.index++;
+			}
+			if (_this.index < 0) {
+				_this.index = $pList.length - 1;
+			}
+			if (_this.index > $pList.length - 1) {
+				_this.index = 0;
+			}
+			$panelMain.stop().animate({marginLeft: -$pList.width() * _this.index}, 500);
+			_this.$target.find('.J-curr').html(_this.index + 1);
+		}
+	}
+
+	new ItemOver({
+		$target: $('#itemover')
+	});
+
+</script>
+
+</body>
+</html>

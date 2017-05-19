@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	name = 'taohua'
+	var obj = {
+		name : 'huang',
+		getName:function(){
+			return this.name;
+		}
+	}
+	var a = obj.getName;
+	var b = obj.getName()
+	alert(a())
+	alert(b)
+</script>
+</body>
+</html>

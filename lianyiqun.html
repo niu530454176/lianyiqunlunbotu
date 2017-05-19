@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>连衣裙轮播图</title>
+	<link rel="stylesheet"
+		  href="http://misc.360buyimg.com/??jdf/1.0.0/unit/ui-base/1.0.0/ui-base.css,jdf/1.0.0/unit/shortcut/2.0.0/shortcut.css,jdf/1.0.0/unit/global-header/1.0.0/global-header.css,jdf/1.0.0/unit/myjd/2.0.0/myjd.css,jdf/1.0.0/unit/nav/2.0.0/nav.css,jdf/1.0.0/unit/shoppingcart/2.0.0/shoppingcart.css,jdf/1.0.0/unit/global-footer/1.0.0/global-footer.css,jdf/1.0.0/unit/service/1.0.0/service.css">
+	<style>
+		#itemover {
+			width: 590px;
+			border: 1px solid #eee
+		}
+
+		#itemover .mt {
+			margin: 10px;
+			color: #999
+		}
+
+		#itemover .mt h3 {
+			font-size: 12px;
+			font-weight: 400
+		}
+
+		#itemover .mt .page-num .curr {
+			color: #e3393c
+		}
+
+		#itemover .mc {
+			height: 535px;
+			padding: 10px 46px;
+			position: relative
+		}
+
+		#itemover .mc .lists {
+			width: 392px;
+			height: 508px;
+			margin: 0 auto;
+			overflow: hidden
+		}
+
+		#itemover .mc .lists .list {
+			width: 10000px;
+			overflow: hidden
+		}
+
+		#itemover .mc .lists .list .plist {
+			width: 392px;
+			_width: 392px;
+			float: left;
+			margin-bottom: 0
+		}
+
+		#itemover .mc .lists .list li {
+			float: left;
+			width: 185px;
+			margin: 10px 5px 30px
+		}
+
+		#itemover .mc .lists .list li .p-img {
+			width: 150px;
+			height: 150px;
+			margin: 0 auto
+		}
+
+		#itemover .mc .lists .list li .p-price {
+			font-size: 14px
+		}
+
+		#itemover .arrow, #itemover .ui-switchable-next, #itemover .ui-switchable-prev {
+			position: absolute;
+			top: 242px;
+			width: 22px;
+			height: 32px;
+			cursor: pointer
+		}
+
+		#itemover .arrow i, #itemover .ui-switchable-next i, #itemover .ui-switchable-prev i {
+			display: inline-block;
+			*display: inline;
+			*zoom: 1;
+			vertical-align: middle;
+			margin-right: 5px
+		}
+
+		#itemover .ui-switchable-next {
+			right: 12px
+		}
+
+		#itemover .ui-switchable-next .sprite-arrow-next {
+			width: 22px;
+			height: 32px;
+			background-image: url(//static.360buyimg.com/item/default/1.0.32/components/itemover/i/__sprite.png);
+			background-position: 0 0
+		}
+
+		#itemover .ui-switchable-prev {
+			left: 12px
+		}
+
+		#itemover .ui-switchable-prev .sprite-arrow-prev {
+			width: 22px;
+			height: 32px;
+			background-image: url(//static.360buyimg.com/item/default/1.0.32/components/itemover/i/__sprite.png);
+			background-position: -22px 0
+		}
+
+		#itemover .p-name {
+			height: 40px;
+		}
+
+		.itemover-tip {
+			color: #999;
+			margin-bottom: 5px
+		}
+
+	</style>
+</head>
+<body>
+<div id="itemOver" class="itemover" data-hook="hide" clstag="shangpin|keycount|product|xiaguituijian">
+
+</div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/template.js"></script>
+<script type="text/javascript">
+	var template = '\
+	<div id="itemover" class="itemover" data-hook="hide" clstag="shangpin|keycount|product|xiaguituijian">\
+		<div class="mt"><h3 class="fl">相似商品推荐</h3>\
+			<div class="page-num fr"><span class="curr">1</span>/<span class="total">3</span></div>\
+		</div>\
+		<div class="mc">\
+			<a href="javascript:;" class="ui-switchable-prev disabled"><i class="sprite-arrow-prev"></i></a>\
+			<div class="lists" style="position: relative;">\
+				<div class="list ui-switchable-panel-main" style="width: 1176px; left: 0px; position: absolute;">\
+					{for item in list}\
+					{if item_index%4 == 0}\
+					<ul class="plist ui-switchable-panel ui-switchable-panel-selected" style="float: left; display: block;">\
+					{/if}\
+						<li data-push="1" data-clk="//mercury.jd.com/log.gif?t=rec.902011&amp;v=src=rec$action=1$reqsig=92ecdf3cb7d8c12e5b3d96c6f07a23327a1ec4f8$enb=1$sku=1754853106$p=902011$pin=$uuid=1491720398483113767884$csku=12070346997$index=0$st=0$adcli=$expid=90201100014082623$im=&amp;rid=3925385488431840958&amp;ver=1&amp;sig=3d90e93f5cf68bcef7fc800f937d7f8dc60ff06a" class="fore1">\
+							<div class="p-img"><a target="_blank" href="//item.jd.com/${item.sku}.html"> <img height="150" width="150" alt="【品质好货，厂家直销，两件立减】系带收腰百褶网纱拼接雪纺连衣裙 黑色 S" src="//img12.360buyimg.com/n1/s150x150_${item.img}"></a></div>\
+							<div class="p-name"><a target="_blank" href="//item.jd.com/${item.sku}.html" title="【品质好货，厂家直销，两件立减】系带收腰百褶网纱拼接雪纺连衣裙 黑色 S">${item.t}</a></div>\
+							<div class="p-price"><strong class="J-p-12070346997">￥ ${item.jp}</strong></div>\
+						</li>\
+					{if item_index%4==3}\
+					</ul>\
+					{/if}\
+					{/for}\
+				</div>\
+			</div>\
+			<a href="javascript:;" class="ui-switchable-next disabled"><i class="sprite-arrow-next"></i></a>\
+		</div>\
+	</div>';
+	//http://diviner.jd.com/diviner?lid=1&lim=12&p=902011&sku=1754853106&c1=1315&c2=1343&c3=9719&callback=jQuery9568106
+	$.ajax({
+		url: 'http://diviner.jd.com/diviner',
+		data: {
+			lid: 1,
+			lim: 12,
+			p: 902011,
+			sku: 1754853106,
+			c1: 1315,
+			c2: 1343,
+			c3: 9719
+		},
+		scriptCharset: "gbk",
+		dataType: 'jsonp',
+		cache: true,
+		jsonpCallback: 'jQuery9568106',
+		success: function (date) {
+			var result = date.data;
+			console.log(result);
+			var obj = {list: result};
+			var str = template.process(obj);
+			$('#itemOver').append(str);
+		}
+	});
+
+	function lunBo(opts) {
+		this.init(opts);
+	}
+	lunBo.prototype = {
+		$itemOver: null,
+		index: 0,
+		width: 0,
+		init: function (opts) {
+			var _this = this;
+			_this.$itemOver = opts.$itemOver;
+			_this.addEvent();
+		},
+		addEvent: function () {
+			var _this = this;
+			_this.$itemOver.delegate('.ui-switchable-prev', 'click', function () {
+				_this.change('left')
+			});
+			_this.$itemOver.delegate('.ui-switchable-next', 'click', function () {
+				_this.change('right')
+			})
+		},
+		change: function (deriction) {
+			var _this = this;
+			_this.$width = _this.$itemOver.find('.plist').width();
+			if (deriction == 'right') {
+				_this.index++;
+				if (_this.index > 2) {
+					_this.index = 0;
+				}
+			} else {
+				_this.index--;
+				if (_this.index < 0) {
+					_this.index = 2
+				}
+			}
+			$('.list').stop().animate({
+				left: -_this.index*_this.$width
+			}, 500);
+		}
+	};
+	var lunbo = new lunBo({
+		$itemOver: $('#itemOver')
+	});
+</script>
+</body>
+</html>
